@@ -26,9 +26,8 @@ def get_extension(url):
     path = urlsplit(url).path
     return os.path.splitext(path)[1]
 
-def download_nasa_image(path,nasa_api):
+def download_nasa_image(path,nasa_api,count_of_image=5):
     url_nasa = 'https://api.nasa.gov/planetary/apod'
-    count_of_image = 5
     payload = {'api_key': f'{nasa_api}',
                'count': f'{count_of_image}'}
     response = requests.get(url_nasa, params=payload)
@@ -39,7 +38,7 @@ def download_nasa_image(path,nasa_api):
         download_images(path, nasa_image_url, filename)
 
 
-def download_epic_image(path,image_count,nasa_api):
+def download_epic_image(path,nasa_api,image_count=5):
     payload = {'api_key': f'{nasa_api}'}
     url = 'https://api.nasa.gov/EPIC/api/natural/all'
     responce = requests.get(url, params=payload)
@@ -55,10 +54,11 @@ def download_epic_image(path,image_count,nasa_api):
                      f'{date.year:02}/{date.month:02}/{date.day:02}/png/{image_name}.png')
         download_images(path,image_url,f'epic_{image_index}.png',payload)
 
-env = Env()
-env.read_env()
-path=env.str('IMAGE_PATH')
-nasa_api=env.str('NASA_API')
-download_epic_image(path,5,nasa_api)
-download_nasa_image(path,nasa_api)
-fetch_spacex_launch(path,25)
+if __name__ == "__main__":
+    env = Env()
+    env.read_env()
+    path=env.str('IMAGE_PATH')
+    nasa_api=env.str('NASA_API')
+    download_epic_image(path,nasa_api)
+    download_nasa_image(path,nasa_api)
+    fetch_spacex_launch(path,25)
