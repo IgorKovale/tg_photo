@@ -8,7 +8,7 @@
 - Извлечение и сохранение фото Земли из программы EPIC (Earth Polychromatic Imaging Camera)
 ## Требования
 Python >= 3.7
-Библиотеки: requests, urlib.parse, datetime, environs, pathlib
+Библиотеки: `requests`, `urlib.parse`, `datetime`, `environs`, `pathlib`
 ## Установка
 Клонируйте репозиторий и установите необходимые зависимости:
 ```bash
