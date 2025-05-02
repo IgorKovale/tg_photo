@@ -1,5 +1,7 @@
 import requests
 from download_images import download_images
+import argparse
+from environs import Env
 
 
 def fetch_spacex_launch(path,launch_id):
@@ -12,3 +14,13 @@ def fetch_spacex_launch(path,launch_id):
         return
     for image_index, image_url in enumerate(images_url):
         download_images(path, image_url, f'spacex_{image_index}.jpg')
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--launch-id', type=str, default='latest')
+args = parser.parse_args()
+env = Env()
+env.read_env()
+path=env.str('IMAGE_PATH')
+nasa_api=env.str('NASA_API')
+fetch_spacex_launch(path,args.launch_id)

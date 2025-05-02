@@ -2,6 +2,7 @@ import requests
 from urllib.parse import urlsplit, unquote
 import os
 from download_images import download_images
+from environs import Env
 
 def get_extension(url):
     url = unquote(url, encoding='utf-8', errors='replace')
@@ -18,3 +19,10 @@ def download_nasa_image(path,nasa_api,count_of_image=5):
         nasa_image_url = nasa_response['url']
         filename = f'nasa_apod_{image_index}{get_extension(nasa_image_url)}'
         download_images(path, nasa_image_url, filename)
+
+
+env = Env()
+env.read_env()
+path=env.str('IMAGE_PATH')
+nasa_api=env.str('NASA_API')
+download_nasa_image(path,nasa_api)
