@@ -30,8 +30,8 @@ path=env.str('IMAGE_PATH')
 tg_token=env.str('TG_TOKEN')
 bot = telegram.Bot(token=tg_token)
 chat_id=env.str('CHAT_ID')
-sleep_time=env.float('SLEEP_TIME',default=14400)
 seconds_in_hours=3600
+sleep_time=env.float('SLEEP_TIME',default=4)*seconds_in_hours
 image_tg_chanel(path,chat_id,sleep_time)
 
 
