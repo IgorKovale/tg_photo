@@ -10,8 +10,10 @@ def download_epic_image(path,nasa_api,image_count=5):
     responce = requests.get(url, params=payload)
     responce.raise_for_status()
     avaible_date = sample(responce.json(),k=image_count)
+    print(avaible_date)
     for image_index, image_date in enumerate(avaible_date):
-        url = f'https://api.nasa.gov/EPIC/api/natural/date/{image_date['date']}'
+        image_date=image_date['date']
+        url = f'https://api.nasa.gov/EPIC/api/natural/date/{image_date}'
         date = datetime.date.fromisoformat(image_date['date'])
         responce = requests.get(url, params=payload)
         responce.raise_for_status()
