@@ -21,8 +21,12 @@ def download_nasa_image(path,nasa_api,count_of_image=5):
         download_images(path, nasa_image_url, filename)
 
 
-env = Env()
-env.read_env()
-path=env.str('IMAGE_PATH')
-nasa_api=env.str('NASA_API')
-download_nasa_image(path,nasa_api)
+def main():
+    env = Env()
+    env.read_env()
+    path = env.str('IMAGE_PATH')
+    nasa_api = env.str('NASA_API')
+    download_nasa_image(path, nasa_api)
+
+if __name__ == '__main__':
+    main()

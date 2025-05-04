@@ -22,8 +22,14 @@ def download_epic_image(path,nasa_api,image_count=5):
         download_images(path,image_url,f'epic_{image_index}.png',payload)
 
 
-env = Env()
-env.read_env()
-path=env.str('IMAGE_PATH')
-nasa_api=env.str('NASA_API')
-download_epic_image(path,nasa_api)
+def main():
+    env = Env()
+    env.read_env()
+    path = env.str('IMAGE_PATH')
+    nasa_api = env.str('NASA_API')
+    download_epic_image(path, nasa_api)
+
+
+
+if __name__ == '__main__':
+    main()

@@ -16,11 +16,16 @@ def fetch_spacex_launch(path,launch_id):
         download_images(path, image_url, f'spacex_{image_index}.jpg')
 
 
-parser = argparse.ArgumentParser()
-parser.add_argument('--launch-id', type=str, default='latest')
-args = parser.parse_args()
-env = Env()
-env.read_env()
-path=env.str('IMAGE_PATH')
-nasa_api=env.str('NASA_API')
-fetch_spacex_launch(path,args.launch_id)
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--launch-id', type=str, default='latest')
+    args = parser.parse_args()
+    env = Env()
+    env.read_env()
+    path = env.str('IMAGE_PATH')
+    nasa_api = env.str('NASA_API')
+    fetch_spacex_launch(path, args.launch_id)
+
+
+if __name__ == '__main__':
+    main()
