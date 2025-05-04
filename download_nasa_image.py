@@ -9,9 +9,9 @@ def get_extension(url):
     path = urlsplit(url).path
     return os.path.splitext(path)[1]
 
-def download_nasa_image(path,nasa_api,count_of_image=5):
+def download_nasa_image(path, nasa_key, count_of_image=5):
     url_nasa = 'https://api.nasa.gov/planetary/apod'
-    payload = {'api_key': f'{nasa_api}',
+    payload = {'api_key': f'{nasa_key}',
                'count': f'{count_of_image}'}
     response = requests.get(url_nasa, params=payload)
     response.raise_for_status()
@@ -25,8 +25,8 @@ def main():
     env = Env()
     env.read_env()
     path = env.str('IMAGE_PATH')
-    nasa_api = env.str('NASA_API')
-    download_nasa_image(path, nasa_api)
+    nasa_key = env.str('NASA_KEY')
+    download_nasa_image(path, nasa_key)
 
 if __name__ == '__main__':
     main()

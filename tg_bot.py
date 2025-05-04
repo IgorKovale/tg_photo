@@ -5,7 +5,7 @@ from time import sleep
 from random import shuffle
 
 
-def image_tg_chanel(bot, path,chat_id,sleep_time):
+def image_tg_chanel(bot, path,chat_id,sleep_time=1):
     images = list(os.walk(fr'{path}'))[0][2]
     for image in images:
         with open(fr'{path}/{image}', 'rb') as file:
@@ -17,7 +17,7 @@ def image_tg_chanel(bot, path,chat_id,sleep_time):
     i = 0
     print(images)
     while True:
-        with open(fr'{path}/{image}', 'rb') as file:
+        with open(fr'{path}/{images[i]}', 'rb') as file:
             media = telegram.InputMediaDocument(media=file)
         bot.send_media_group(chat_id=chat_id, media=[media])
         sleep(sleep_time)

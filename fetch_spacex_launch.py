@@ -23,7 +23,6 @@ def main():
     env = Env()
     env.read_env()
     path = env.str('IMAGE_PATH')
-    nasa_api = env.str('NASA_API')
     fetch_spacex_launch(path, args.launch_id)
 
 

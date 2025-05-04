@@ -4,8 +4,8 @@ from download_images import download_images
 from random import sample
 from environs import Env
 
-def download_epic_image(path,nasa_api,image_count=5):
-    payload = {'api_key': f'{nasa_api}'}
+def download_epic_image(path, nasa_key, image_count=5):
+    payload = {'api_key': f'{nasa_key}'}
     url = 'https://api.nasa.gov/EPIC/api/natural/all'
     responce = requests.get(url, params=payload)
     responce.raise_for_status()
@@ -26,8 +26,8 @@ def main():
     env = Env()
     env.read_env()
     path = env.str('IMAGE_PATH')
-    nasa_api = env.str('NASA_API')
-    download_epic_image(path, nasa_api)
+    nasa_key = env.str('NASA_KEY')
+    download_epic_image(path, nasa_key)
 
 
 
