@@ -18,28 +18,28 @@ pip install -r requirements.txt
 Создайте файл `.env` и добавьте туда:  
 
 | Имя переменной | Описание                                                 |
-| -------------- | -------------------------------------------------------- |
-| NASA_API       | Ключ API для доступа к службам NASA.                     |
+|----------------| -------------------------------------------------------- |
+| NASA_KEY       | Ключ API для доступа к службам NASA.                     |
 | IMAGE_PATH     | Путь к папке с изображениями, используемыми в проекте.   |
 | TG_TOKEN       | Токен для доступа к Telegram API                         |
-| CHAT_ID        | Идентификатор чата Telegram                              |
+| TG_CHAT_ID     | Идентификатор чата Telegram                              |
 | TIME_SLEEP     | Время в часах между отправкой фото(4 часа по  умолчанию) |
 ```bash
-NASA_API=YOUR_NASA_API_KEY
+NASA_KEY=YOUR_NASA_API_KEY
 IMAGE_PATH=path_to_images
 TG_TOKEN=YOUR_TELEGRAM_BOT_TOKEN
-CHAT_ID=YOUR_CHAT_ID_OR_CHANNEL_ID
+TG_CHAT_ID=YOUR_CHAT_ID_OR_CHANNEL_ID
 TIME_SLEEP=4
 ```
 ## Запуск  
 ### Скачивание фото Земли из программы EPIC:  
 Для работы скрипта необходимо указать API с сайта NASA в файле `.env`
 ```bash  
-python download_epic_image.py
+python download_epic_images.py
 ```  
 Фото будут загружены в папку, указанную в файле `.env`  по умолчанию 5 фото, кол-во можно изменить в скрипте 
 ```python
-download_epic_image(path,nasa_api,10)
+download_epic_images(path,nasa_api,10)
 ```
 ### Загрузка изображений запуска SpaceX:
 
@@ -54,11 +54,11 @@ There are not images for this launch.
 ### Скачивание ежедневных фотографий программы APOD
 Для работы скрипта необходимо указать API с сайта NASA в файле `.env`
 ```bash
-python download_nasa_image.py
+python download_nasa_images.py
 ```
 Фото будут загружены в папку, указанную в файле `.env`  по умолчанию 5 фото, кол-во можно изменить в скрипте 
 ```python
-download_nasa_image(path,nasa_api,10)
+download_nasa_images(path,nasa_api,10)
 ```
 ### Автоматическая отправка изображений в телеграмм
 Для работы скрипта необходимо указать токен бота, chat id и время между отправкой сообщений(по умолчанию 4 часа) в файле `env`
