@@ -5,7 +5,7 @@ from time import sleep
 from random import shuffle
 
 
-def image_tg_chanel(bot, path,chat_id,sleep_time=1):
+def image_tg_chanel(bot, path,chat_id,sleep_time):
     images = list(os.walk(fr'{path}'))[0][2]
     for image in images:
         with open(fr'{path}/{image}', 'rb') as file:
